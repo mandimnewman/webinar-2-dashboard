@@ -1,33 +1,33 @@
 import { useState } from "react";
 
 const PEOPLE = {
-  Pooja:    { c: "#185FA5", bg: "#E6F1FB", t: "#0C447C" },
-  Mandi:    { c: "#0F6E56", bg: "#E1F5EE", t: "#085041" },
-  Ishana:   { c: "#533AB7", bg: "#EEEDFE", t: "#3C3489" },
-  Nouaama:  { c: "#BA7517", bg: "#FAEEDA", t: "#633806" },
-  Shivaun:  { c: "#3B6D11", bg: "#EAF3DE", t: "#27500A" },
-  Francois: { c: "#993C1D", bg: "#FAECE7", t: "#712B13" },
-  Mukundan: { c: "#A32D2D", bg: "#FCEBEB", t: "#791F1F" },
-  Becca:    { c: "#993556", bg: "#FBEAF0", t: "#72243E" },
-  Alyssa:   { c: "#5F5E5A", bg: "#F1EFE8", t: "#444441" },
-  All:      { c: "#888780", bg: "#F1EFE8", t: "#5F5E5A" },
+  Pooja:    { c: "#036CA1", bg: "#E1EFF8", t: "#02283A" },
+  Mandi:    { c: "#0E87C3", bg: "#E1F3FB", t: "#02283A" },
+  Ishana:   { c: "#3B5781", bg: "#E8EDF5", t: "#02283A" },
+  Nouaama:  { c: "#FB7F38", bg: "#FEF0E8", t: "#7A3A10" },
+  Shivaun:  { c: "#034F76", bg: "#E0EBF3", t: "#02283A" },
+  Francois: { c: "#6B8BBC", bg: "#EDF1F8", t: "#2C3E5A" },
+  Mukundan: { c: "#31B0F1", bg: "#E5F6FE", t: "#034F76" },
+  Becca:    { c: "#02283A", bg: "#E0E5E8", t: "#02283A" },
+  Alyssa:   { c: "#3B5781", bg: "#E8EDF5", t: "#2C3E5A" },
+  All:      { c: "#6B8BBC", bg: "#EDF1F8", t: "#3B5781" },
 };
 
 const CAT_STYLES = {
-  Email:        { bg: "#E6F1FB", co: "#0C447C", b: "#185FA5" },
-  LinkedIn:     { bg: "#EAF3DE", co: "#27500A", b: "#3B6D11" },
-  Platform:     { bg: "#EEEDFE", co: "#3C3489", b: "#534AB7" },
-  Content:      { bg: "#FAEEDA", co: "#633806", b: "#BA7517" },
-  "Live event": { bg: "#FCEBEB", co: "#791F1F", b: "#A32D2D" },
-  Operations:   { bg: "#F1EFE8", co: "#444441", b: "#888780" },
-  Sales:        { bg: "#FBEAF0", co: "#72243E", b: "#993556" },
+  Email:        { bg: "#E1EFF8", co: "#02283A", b: "#036CA1" },
+  LinkedIn:     { bg: "#E1F3FB", co: "#034F76", b: "#0E87C3" },
+  Platform:     { bg: "#E8EDF5", co: "#2C3E5A", b: "#3B5781" },
+  Content:      { bg: "#FEF0E8", co: "#7A3A10", b: "#FB7F38" },
+  "Live event": { bg: "#E5F6FE", co: "#034F76", b: "#31B0F1" },
+  Operations:   { bg: "#EDF1F8", co: "#2C3E5A", b: "#6B8BBC" },
+  Sales:        { bg: "#E0EBF3", co: "#02283A", b: "#034F76" },
 };
 
 const RACI_STYLES = {
-  R: { bg: "#E6F1FB", co: "#0C447C" },
-  A: { bg: "#EAF3DE", co: "#27500A" },
-  C: { bg: "#FAEEDA", co: "#633806" },
-  I: { bg: "#F1EFE8", co: "#444441" },
+  R: { bg: "#E1EFF8", co: "#02283A" },
+  A: { bg: "#FEF0E8", co: "#7A3A10" },
+  C: { bg: "#E5F6FE", co: "#034F76" },
+  I: { bg: "#EDF1F8", co: "#3B5781" },
 };
 
 const WEEK_LABELS = {
@@ -81,11 +81,30 @@ const TASKS = [
   { id:"O", w:"W4", d:"By 24 Jun", l:"T+14", ti:"10 CVA discovery calls booked (HubSpot metric)", c:"Sales", R:["Pooja"], A:["Pooja"], C:["Ishana","Francois","Nouaama"], I:["Shivaun"] },
 ];
 
+function ConnorLogo() {
+  return (
+    <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" stroke="#31B0F1" strokeWidth="2" fill="none"/>
+        <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" stroke="#31B0F1" strokeWidth="1.5" fill="none"/>
+        <line x1="50" y1="10" x2="50" y2="90" stroke="#31B0F1" strokeWidth="1" opacity="0.5"/>
+        <line x1="15" y1="30" x2="85" y2="70" stroke="#31B0F1" strokeWidth="1" opacity="0.5"/>
+        <line x1="85" y1="30" x2="15" y2="70" stroke="#31B0F1" strokeWidth="1" opacity="0.5"/>
+        <line x1="50" y1="10" x2="85" y2="70" stroke="#31B0F1" strokeWidth="1" opacity="0.4"/>
+        <line x1="50" y1="10" x2="15" y2="70" stroke="#31B0F1" strokeWidth="1" opacity="0.4"/>
+        <line x1="15" y1="30" x2="50" y2="90" stroke="#31B0F1" strokeWidth="1" opacity="0.4"/>
+        <line x1="85" y1="30" x2="50" y2="90" stroke="#31B0F1" strokeWidth="1" opacity="0.4"/>
+      </svg>
+      <span style={{ fontSize:22, fontWeight:700, color:"#fff", letterSpacing:2, fontFamily:"Arial, sans-serif" }}>CONNOR</span>
+    </div>
+  );
+}
+
 function Avatar({ name }) {
   const p = PEOPLE[name] || PEOPLE.All;
   const init = name === "All" ? "★" : name.slice(0, 2);
   return (
-    <span style={{ width:15, height:15, borderRadius:"50%", background:p.c, color:"#fff", display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:8, fontWeight:600, flexShrink:0 }}>
+    <span style={{ width:15, height:15, borderRadius:"50%", background:p.c, color:"#fff", display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:8, fontWeight:700, flexShrink:0 }}>
       {init}
     </span>
   );
@@ -94,7 +113,7 @@ function Avatar({ name }) {
 function RaciBadge({ name, role }) {
   const s = RACI_STYLES[role];
   return (
-    <span style={{ display:"inline-flex", alignItems:"center", gap:3, fontSize:10, padding:"2px 5px", borderRadius:20, background:s.bg, color:s.co }}>
+    <span style={{ display:"inline-flex", alignItems:"center", gap:3, fontSize:10, padding:"2px 5px", borderRadius:20, background:s.bg, color:s.co, fontFamily:"Arial, sans-serif" }}>
       <Avatar name={name} />
       {name} <b>{role}</b>
     </span>
@@ -110,13 +129,13 @@ function TaskCard({ task, done, onToggle }) {
     ...task.I.map(n => ({ n, r:"I" })),
   ];
   return (
-    <div style={{ background:"#fff", border:"0.5px solid #e5e5e5", borderLeft:`3px solid ${s.b}`, borderRadius:12, padding:"11px 11px 11px 12px", position:"relative", opacity:done ? 0.45 : 1, transition:"opacity .15s" }}>
+    <div style={{ background:"#fff", border:"1px solid #E1E7F1", borderLeft:`3px solid ${s.b}`, borderRadius:8, padding:"11px 11px 11px 12px", position:"relative", opacity:done ? 0.45 : 1, transition:"opacity .15s", fontFamily:"Arial, sans-serif" }}>
       <div style={{ position:"absolute", top:10, right:8 }}>
-        <input type="checkbox" checked={done} onChange={() => onToggle(task.id)} style={{ width:15, height:15, cursor:"pointer", accentColor:"#185FA5" }} aria-label="Mark complete" />
+        <input type="checkbox" checked={done} onChange={() => onToggle(task.id)} style={{ width:15, height:15, cursor:"pointer", accentColor:"#FB7F38" }} aria-label="Mark complete" />
       </div>
-      <div style={{ fontSize:10, color:"#999", marginBottom:3 }}>{task.d} · {task.l}</div>
-      <div style={{ fontSize:13, fontWeight:500, color:"#111", lineHeight:1.35, marginBottom:7, paddingRight:20, textDecoration:done ? "line-through" : "none" }}>{task.ti}</div>
-      <span style={{ display:"inline-block", fontSize:10, padding:"2px 7px", borderRadius:20, marginBottom:7, background:s.bg, color:s.co }}>{task.c}</span>
+      <div style={{ fontSize:10, color:"#6B8BBC", marginBottom:3 }}>{task.d} · {task.l}</div>
+      <div style={{ fontSize:13, fontWeight:600, color:"#02283A", lineHeight:1.35, marginBottom:7, paddingRight:20, textDecoration:done ? "line-through" : "none" }}>{task.ti}</div>
+      <span style={{ display:"inline-block", fontSize:10, padding:"2px 7px", borderRadius:20, marginBottom:7, background:s.bg, color:s.co, fontWeight:600 }}>{task.c}</span>
       <div style={{ display:"flex", gap:3, flexWrap:"wrap" }}>
         {all.map((x, i) => <RaciBadge key={i} name={x.n} role={x.r} />)}
       </div>
@@ -149,69 +168,92 @@ export default function App() {
   const filtDone = filtered.filter(t => checked[t.id]).length;
 
   const weeks = [
-    { id:"all", label:"All weeks" }, { id:"W1", label:"Week 1 · 20–27 May" },
+    { id:"all", label:"All Weeks" }, { id:"W1", label:"Week 1 · 20–27 May" },
     { id:"W2", label:"Week 2 · 28 May–6 Jun" }, { id:"W3", label:"Week 3 · 7–10 Jun" },
     { id:"W4", label:"Week 4 · Post-event" },
   ];
 
   return (
-    <div style={{ maxWidth:960, margin:"0 auto", padding:"2rem 1.5rem", fontFamily:"system-ui, sans-serif" }}>
-      <h1 style={{ fontSize:22, fontWeight:600, color:"#111", marginBottom:4 }}>Webinar 2 — IBM CVA Decoded</h1>
-      <p style={{ fontSize:13, color:"#666", marginBottom:"1.5rem" }}>Task dashboard · 10 June 2026 · Connor Consulting × IBM</p>
-      <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:"1rem" }}>
-        {[{ n:filtered.length, l:"tasks shown" }, { n:filtDone, l:"done", col:"#3B6D11" }, { n:filtered.length - filtDone, l:"remaining", col:"#BA7517" }].map((s, i) => (
-          <div key={i} style={{ background:"#f5f5f5", borderRadius:8, padding:"6px 14px", flex:1, minWidth:80 }}>
-            <div style={{ fontSize:20, fontWeight:600, color:s.col || "#111" }}>{s.n}</div>
-            <div style={{ fontSize:11, color:"#888", marginTop:1 }}>{s.l}</div>
-          </div>
-        ))}
+    <div style={{ fontFamily:"Arial, sans-serif", background:"#F4F7FA", minHeight:"100vh" }}>
+      <div style={{ background:"#02283A", padding:"1rem 2rem", display:"flex", alignItems:"center", justifyContent:"space-between", borderBottom:"3px solid #FB7F38" }}>
+        <ConnorLogo />
+        <div style={{ textAlign:"right" }}>
+          <div style={{ fontSize:13, fontWeight:700, color:"#31B0F1", letterSpacing:1, textTransform:"uppercase" }}>Webinar 2 — IBM CVA Decoded</div>
+          <div style={{ fontSize:11, color:"#6B8BBC", marginTop:2 }}>Task Dashboard · 10 June 2026</div>
+        </div>
       </div>
-      <div style={{ fontSize:11, color:"#888", marginBottom:4 }}>{totalDone} of {TASKS.length} tasks completed ({pct}%)</div>
-      <div style={{ height:4, background:"#eee", borderRadius:2, marginBottom:"1.5rem", overflow:"hidden" }}>
-        <div style={{ height:4, width:pct+"%", background:"#185FA5", borderRadius:2, transition:"width .25s" }} />
-      </div>
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:"1rem" }}>
-        {weeks.map(w => (
-          <button key={w.id} onClick={() => setActiveWeek(w.id)} style={{ fontSize:12, padding:"5px 12px", border:"1px solid", borderRadius:8, cursor:"pointer", background:activeWeek===w.id ? "#185FA5" : "#fff", color:activeWeek===w.id ? "#fff" : "#555", borderColor:activeWeek===w.id ? "#185FA5" : "#ddd" }}>{w.label}</button>
-        ))}
-      </div>
-      <div style={{ display:"flex", gap:10, flexWrap:"wrap", marginBottom:".75rem", alignItems:"center", fontSize:11, color:"#666" }}>
-        <b>RACI:</b>
-        {Object.entries(RACI_STYLES).map(([r, s]) => (
-          <span key={r} style={{ display:"flex", alignItems:"center", gap:3 }}>
-            <span style={{ width:17, height:17, borderRadius:3, background:s.bg, color:s.co, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:9, fontWeight:700 }}>{r}</span>
-            {{ R:"Responsible", A:"Accountable", C:"Consulted", I:"Informed" }[r]}
-          </span>
-        ))}
-      </div>
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:"1.25rem", alignItems:"center" }}>
-        <div style={{ display:"flex", gap:5, flexWrap:"wrap", flex:1 }}>
-          <button onClick={() => setActivePerson("all")} style={{ fontSize:11, padding:"3px 9px", borderRadius:20, border:activePerson==="all" ? "1.5px solid #aaa" : "1px solid #ddd", background:"#fff", color:"#555", cursor:"pointer" }}>All people</button>
-          {Object.entries(PEOPLE).filter(([k]) => k !== "All").map(([name, p]) => (
-            <button key={name} onClick={() => setActivePerson(name)} style={{ fontSize:11, padding:"3px 9px", borderRadius:20, border:activePerson===name ? `1.5px solid ${p.c}` : `1px solid ${p.c}`, background:p.bg, color:p.t, cursor:"pointer" }}>{name}</button>
+
+      <div style={{ maxWidth:1100, margin:"0 auto", padding:"1.5rem" }}>
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", marginBottom:"1rem" }}>
+          {[{ n:filtered.length, l:"Tasks Shown", accent:"#02283A" }, { n:filtDone, l:"Completed", accent:"#0E87C3" }, { n:filtered.length-filtDone, l:"Remaining", accent:"#FB7F38" }].map((s,i) => (
+            <div key={i} style={{ background:"#fff", border:"1px solid #E1E7F1", borderTop:`3px solid ${s.accent}`, borderRadius:8, padding:"10px 16px", flex:1, minWidth:90 }}>
+              <div style={{ fontSize:22, fontWeight:700, color:s.accent }}>{s.n}</div>
+              <div style={{ fontSize:11, color:"#6B8BBC", marginTop:2, textTransform:"uppercase", letterSpacing:.5 }}>{s.l}</div>
+            </div>
           ))}
         </div>
-        <button onClick={() => setHideDone(h => !h)} style={{ fontSize:11, padding:"3px 10px", borderRadius:20, border:"1px solid", cursor:"pointer", background:hideDone ? "#EAF3DE" : "#fff", color:hideDone ? "#27500A" : "#555", borderColor:hideDone ? "#3B6D11" : "#ddd" }}>{hideDone ? "Show done" : "Hide done"}</button>
-        <button onClick={() => { if (Object.values(checked).some(Boolean) && window.confirm("Clear all checkboxes?")) setChecked({}); }} style={{ fontSize:11, padding:"3px 9px", borderRadius:8, border:"1px solid #ddd", background:"none", color:"#888", cursor:"pointer" }}>Reset</button>
+
+        <div style={{ background:"#fff", border:"1px solid #E1E7F1", borderRadius:8, padding:"10px 16px", marginBottom:"1rem" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", fontSize:11, color:"#6B8BBC", marginBottom:6, textTransform:"uppercase", letterSpacing:.5 }}>
+            <span>Overall Progress</span><span style={{ color:"#FB7F38", fontWeight:700 }}>{pct}%</span>
+          </div>
+          <div style={{ height:6, background:"#E1E7F1", borderRadius:3, overflow:"hidden" }}>
+            <div style={{ height:6, width:pct+"%", background:"linear-gradient(90deg,#034F76,#31B0F1)", borderRadius:3, transition:"width .3s" }} />
+          </div>
+          <div style={{ fontSize:11, color:"#6B8BBC", marginTop:5 }}>{totalDone} of {TASKS.length} tasks completed</div>
+        </div>
+
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:"1rem" }}>
+          {weeks.map(w => (
+            <button key={w.id} onClick={() => setActiveWeek(w.id)} style={{ fontSize:11, padding:"6px 13px", border:"1px solid", borderRadius:4, cursor:"pointer", fontFamily:"Arial,sans-serif", fontWeight:600, letterSpacing:.3, textTransform:"uppercase", background:activeWeek===w.id?"#02283A":"#fff", color:activeWeek===w.id?"#fff":"#02283A", borderColor:activeWeek===w.id?"#02283A":"#E1E7F1" }}>{w.label}</button>
+          ))}
+        </div>
+
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", marginBottom:".75rem", alignItems:"center", fontSize:11, color:"#6B8BBC", background:"#fff", border:"1px solid #E1E7F1", borderRadius:8, padding:"8px 14px" }}>
+          <b style={{ color:"#02283A", textTransform:"uppercase", letterSpacing:.5 }}>RACI:</b>
+          {Object.entries(RACI_STYLES).map(([r,s]) => (
+            <span key={r} style={{ display:"flex", alignItems:"center", gap:4 }}>
+              <span style={{ width:18, height:18, borderRadius:4, background:s.bg, color:s.co, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700 }}>{r}</span>
+              <span style={{ color:"#3B5781" }}>{{ R:"Responsible", A:"Accountable", C:"Consulted", I:"Informed" }[r]}</span>
+            </span>
+          ))}
+        </div>
+
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:"1.25rem", alignItems:"center" }}>
+          <div style={{ display:"flex", gap:5, flexWrap:"wrap", flex:1 }}>
+            <button onClick={() => setActivePerson("all")} style={{ fontSize:11, padding:"3px 10px", borderRadius:20, border:activePerson==="all"?"2px solid #02283A":"1px solid #E1E7F1", background:activePerson==="all"?"#02283A":"#fff", color:activePerson==="all"?"#fff":"#3B5781", cursor:"pointer", fontFamily:"Arial,sans-serif", fontWeight:600 }}>All People</button>
+            {Object.entries(PEOPLE).filter(([k]) => k !== "All").map(([name,p]) => (
+              <button key={name} onClick={() => setActivePerson(name)} style={{ fontSize:11, padding:"3px 10px", borderRadius:20, border:activePerson===name?`2px solid ${p.c}`:`1px solid ${p.c}`, background:p.bg, color:p.t, cursor:"pointer", fontFamily:"Arial,sans-serif", fontWeight:600 }}>{name}</button>
+            ))}
+          </div>
+          <button onClick={() => setHideDone(h => !h)} style={{ fontSize:11, padding:"4px 12px", borderRadius:4, border:"1px solid", cursor:"pointer", fontFamily:"Arial,sans-serif", fontWeight:600, textTransform:"uppercase", letterSpacing:.3, background:hideDone?"#034F76":"#fff", color:hideDone?"#fff":"#034F76", borderColor:"#034F76" }}>{hideDone?"Show Done":"Hide Done"}</button>
+          <button onClick={() => { if(Object.values(checked).some(Boolean)&&window.confirm("Clear all checkboxes?"))setChecked({}); }} style={{ fontSize:11, padding:"4px 10px", borderRadius:4, border:"1px solid #E1E7F1", background:"#fff", color:"#6B8BBC", cursor:"pointer", fontFamily:"Arial,sans-serif" }}>Reset</button>
+        </div>
+
+        {Object.keys(byWeek).length===0
+          ? <div style={{ textAlign:"center", padding:"3rem", color:"#6B8BBC", fontSize:13 }}>No tasks match this filter.</div>
+          : Object.entries(byWeek).map(([wk,wTasks]) => {
+            const wDone=TASKS.filter(t=>t.w===wk&&checked[t.id]).length;
+            const wTotal=TASKS.filter(t=>t.w===wk&&matchesPerson(t)).length;
+            return (
+              <div key={wk}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", margin:"16px 0 8px", paddingBottom:6, borderBottom:"2px solid #02283A" }}>
+                  <span style={{ fontSize:11, fontWeight:700, color:"#02283A", letterSpacing:1, textTransform:"uppercase" }}>{WEEK_LABELS[wk]}</span>
+                  <span style={{ fontSize:11, color:"#FB7F38", fontWeight:700 }}>{wDone}/{wTotal} done</span>
+                </div>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))", gap:10 }}>
+                  {wTasks.map(t => <TaskCard key={t.id} task={t} done={!!checked[t.id]} onToggle={toggle} />)}
+                </div>
+              </div>
+            );
+          })
+        }
+
+        <div style={{ marginTop:"2rem", paddingTop:"1rem", borderTop:"1px solid #E1E7F1", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+          <span style={{ fontSize:11, color:"#6B8BBC" }}>Connor Consulting × IBM · Webinar 2 · 2026</span>
+          <span style={{ fontSize:11, color:"#FB7F38", fontWeight:700 }}>CONNOR</span>
+        </div>
       </div>
-      {Object.keys(byWeek).length === 0
-        ? <div style={{ textAlign:"center", padding:"3rem", color:"#aaa", fontSize:13 }}>No tasks match this filter.</div>
-        : Object.entries(byWeek).map(([wk, wTasks]) => {
-          const wDone = TASKS.filter(t => t.w === wk && checked[t.id]).length;
-          const wTotal = TASKS.filter(t => t.w === wk && matchesPerson(t)).length;
-          return (
-            <div key={wk}>
-              <div style={{ fontSize:11, fontWeight:600, color:"#aaa", letterSpacing:".5px", textTransform:"uppercase", margin:"16px 0 8px", paddingBottom:4, borderBottom:"1px solid #eee", display:"flex", justifyContent:"space-between" }}>
-                <span>{WEEK_LABELS[wk]}</span>
-                <span style={{ textTransform:"none", letterSpacing:0, fontWeight:400 }}>{wDone}/{wTotal} done</span>
-              </div>
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(200px, 1fr))", gap:10 }}>
-                {wTasks.map(t => <TaskCard key={t.id} task={t} done={!!checked[t.id]} onToggle={toggle} />)}
-              </div>
-            </div>
-          );
-        })
-      }
     </div>
   );
 }
