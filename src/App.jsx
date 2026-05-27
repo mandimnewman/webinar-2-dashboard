@@ -1,4 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const SUPABASE_URL = "https://vijnjydywahzzvtizgvw.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9VvPKt2LemKlByNDl9U2DA_KE6hkaT8";
+
+async function getChecks() {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/task_checks?select=task_id,checked`, {
+    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+  });
+  return res.json();
+}
+
+async function setCheck(task_id, checked) {
+  await fetch(`${SUPABASE_URL}/rest/v1/task_checks`, {
+    method: "POST",
+    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json", Prefer: "resolution=merge-duplicates" },
+    body: JSON.stringify({ task_id, checked, updated_at: new Date().toISOString() })
+  });
+}
 
 const PEOPLE = {
   Pooja:    { c: "#036CA1", bg: "#E1EFF8", t: "#02283A" },
@@ -42,7 +60,7 @@ const TASKS = [
   { id:"b", w:"W1", d:"Wed 20 May", l:"T−21", ti:"LinkedIn Event published", c:"LinkedIn", R:["Mandi"], A:["Pooja"], C:["Alyssa"], I:["All"] },
   { id:"c", w:"W1", d:"Wed 20 May", l:"T−21", ti:"Coffee chat rollout begins — Francois SA first", c:"Content", R:["Francois"], A:["Pooja"], C:["Alyssa"], I:[] },
   { id:"d", w:"W1", d:"Fri 22 May", l:"T−19", ti:"Francois SA coffee chat recording ready", c:"Content", R:["Francois"], A:["Pooja"], C:[], I:["Mandi"] },
-  { id:"e", w:"W2", d:"Sat 23 May", l:"T−18", ti:"Mukundan kickoff call — content split, slides, dry run", c:"Operations", R:["Pooja"], A:["Pooja"], C:["Mukundan"], I:["Mandi"] },
+  { id:"e", w:"W1", d:"Sat 23 May", l:"T−18", ti:"Mukundan kickoff call — content split, slides, dry run", c:"Operations", R:["Pooja"], A:["Pooja"], C:["Mukundan"], I:["Mandi"] },
   { id:"f", w:"W1", d:"Mon 25 May", l:"T−16", ti:"LinkedIn Post 1 — series mid-point, W2 reg open", c:"LinkedIn", R:["Shivaun"], A:["Pooja"], C:[], I:["Nouaama","Ishana","Francois"] },
   { id:"g", w:"W1", d:"Mon 25 May", l:"T−16", ti:"HubSpot cold ICP push — banks, healthcare, public sector", c:"Email", R:["Mandi"], A:["Pooja"], C:[], I:["Ishana"] },
   { id:"h", w:"W1", d:"Wed 27 May", l:"T−14", ti:"LinkedIn Post 2 — why W2 matters (Pooja)", c:"LinkedIn", R:["Pooja"], A:["Pooja"], C:[], I:["Mandi"] },
@@ -113,7 +131,7 @@ function Avatar({ name }) {
 function RaciBadge({ name, role }) {
   const s = RACI_STYLES[role];
   return (
-    <span style={{ display:"inline-flex", alignItems:"center", gap:3, fontSize:10, padding:"2px 5px", borderRadius:20, background:s.bg, color:s.co, fontFamily:"Arial, sans-serif" }}>
+    <span style={{ display:"inline-flex", alignItems:"center", gap:3, fontSize:10, padding:"2px 5px", borderRadius:20, background:s.bg, color:s.co }}>
       <Avatar name={name} />
       {name} <b>{role}</b>
     </span>
@@ -145,12 +163,24 @@ function TaskCard({ task, done, onToggle }) {
 
 export default function App() {
   const [checked, setChecked] = useState({});
+  const [loading, setLoading] = useState(true);
   const [activeWeek, setActiveWeek] = useState("all");
   const [activePerson, setActivePerson] = useState("all");
   const [hideDone, setHideDone] = useState(false);
 
-  function toggle(id) {
-    setChecked(prev => ({ ...prev, [id]: !prev[id] }));
+  useEffect(() => {
+    getChecks().then(data => {
+      const map = {};
+      if (Array.isArray(data)) data.forEach(r => { map[r.task_id] = r.checked; });
+      setChecked(map);
+      setLoading(false);
+    });
+  }, []);
+
+  async function toggle(id) {
+    const newVal = !checked[id];
+    setChecked(prev => ({ ...prev, [id]: newVal }));
+    await setCheck(id, newVal);
   }
 
   function matchesPerson(t) {
@@ -172,6 +202,12 @@ export default function App() {
     { id:"W2", label:"Week 2 · 28 May–6 Jun" }, { id:"W3", label:"Week 3 · 7–10 Jun" },
     { id:"W4", label:"Week 4 · Post-event" },
   ];
+
+  if (loading) return (
+    <div style={{ fontFamily:"Arial, sans-serif", background:"#02283A", minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <div style={{ color:"#31B0F1", fontSize:16, fontWeight:600 }}>Loading dashboard...</div>
+    </div>
+  );
 
   return (
     <div style={{ fontFamily:"Arial, sans-serif", background:"#F4F7FA", minHeight:"100vh" }}>
