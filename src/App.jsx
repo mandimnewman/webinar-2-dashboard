@@ -42,7 +42,7 @@ const TASKS = [
   { id:"b", w:"W1", d:"Wed 20 May", l:"T−21", ti:"LinkedIn Event published", c:"LinkedIn", R:["Mandi"], A:["Pooja"], C:["Alyssa"], I:["All"] },
   { id:"c", w:"W1", d:"Wed 20 May", l:"T−21", ti:"Coffee chat rollout begins — Francois SA first", c:"Content", R:["Francois"], A:["Pooja"], C:["Alyssa"], I:[] },
   { id:"d", w:"W1", d:"Fri 22 May", l:"T−19", ti:"Francois SA coffee chat recording ready", c:"Content", R:["Francois"], A:["Pooja"], C:[], I:["Mandi"] },
-  { id:"e", w:"W1", d:"Sat 23 May", l:"T−18", ti:"Mukundan kickoff call — content split, slides, dry run", c:"Operations", R:["Pooja"], A:["Pooja"], C:["Mukundan"], I:["Mandi"] },
+  { id:"e", w:"W2", d:"Sat 23 May", l:"T−18", ti:"Mukundan kickoff call — content split, slides, dry run", c:"Operations", R:["Pooja"], A:["Pooja"], C:["Mukundan"], I:["Mandi"] },
   { id:"f", w:"W1", d:"Mon 25 May", l:"T−16", ti:"LinkedIn Post 1 — series mid-point, W2 reg open", c:"LinkedIn", R:["Shivaun"], A:["Pooja"], C:[], I:["Nouaama","Ishana","Francois"] },
   { id:"g", w:"W1", d:"Mon 25 May", l:"T−16", ti:"HubSpot cold ICP push — banks, healthcare, public sector", c:"Email", R:["Mandi"], A:["Pooja"], C:[], I:["Ishana"] },
   { id:"h", w:"W1", d:"Wed 27 May", l:"T−14", ti:"LinkedIn Post 2 — why W2 matters (Pooja)", c:"LinkedIn", R:["Pooja"], A:["Pooja"], C:[], I:["Mandi"] },
